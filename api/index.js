@@ -4,7 +4,7 @@ const routerApi = require('./routes');
 const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/error.handler');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT| 3000;
 
 app.use(express.json());
 const whiteList = ['http://localhost:3000'];
@@ -19,11 +19,11 @@ const options = {
 }
 app.use(cors(options));
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
   res.send('Hello World!');
 })
 
-app.get('/nueva-ruta', (peticion, respuesta) => {
+app.get('/api/nueva-ruta', (peticion, respuesta) => {
   respuesta.send('Nueva ruta');
 })
 
